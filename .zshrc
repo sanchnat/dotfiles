@@ -22,18 +22,12 @@ export ZSH="/Users/nataliasanchez/.oh-my-zsh"
 #Plugins.
 plugins=(git)
 
-# Font mode for powerlevel9k
-P9K_MODE="nerdfont-complete"
-
 # Theme. 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Prompt elements
 P9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
 P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs go_version time)
-
-# Set name of the theme to load.
-ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Status
 P9K_STATUS_OK_ICON=$'\e342'
