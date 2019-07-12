@@ -1,9 +1,3 @@
-  _____    _
-# |__  /___| |__  _ __ ___
-#   / // __| '_ \| '__/ __|
-#  / /_\__ \ | | | | | (__
-# /____|___/_| |_|_|  \___|
-
 # Inspired by many others, but mostly https://github.com/da-edra/dotfiles/blob/master/.zshrc. 
 
 # Show OS info when opening a new terminal
@@ -24,10 +18,14 @@ plugins=(git)
 
 # Theme. 
 ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='nerdfont-complete'
 
 # Prompt elements
 P9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
 P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs go_version time)
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
 
 # Status
 P9K_STATUS_OK_ICON=$'\e342'
@@ -36,7 +34,6 @@ P9K_STATUS_ERROR_CR_ICON=$'\uf165'
 
 # Prompt settings
 P9K_PROMPT_ON_NEWLINE=true
-P9K_RPROMPT_ON_NEWLINE=true
 P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON=$'%K{white}%k'
 P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON=$'%K{green}%F{black} \uf155 %f%F{green}%k\ue0b0%f '
 
