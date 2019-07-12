@@ -1,68 +1,62 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+  _____    _
+# |__  /___| |__  _ __ ___
+#   / // __| '_ \| '__/ __|
+#  / /_\__ \ | | | | | (__
+# /____|___/_| |_|_|  \___|
 
-# Path to your oh-my-zsh installation.
+# Inspired by many others, but mostly https://github.com/da-edra/dotfiles/blob/master/.zshrc. 
+
+# Show OS info when opening a new terminal
+neofetch
+
+#Aliases:
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to oh-my-zsh installation.
 export ZSH="/Users/nataliasanchez/.oh-my-zsh"
 
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="white"
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="black"
+#Plugins.
+plugins=(git)
 
-zsh_wifi_signal(){
-        local output=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I)
-        local airport=$(echo $output | grep 'AirPort' | awk -F': ' '{print $2}')
+# Font mode for powerlevel9k
+P9K_MODE="nerdfont-complete"
 
-        if [ "$airport" = "Off" ]; then
-                local color='%F{black}'
-                echo -n "%{$color%}Wifi Off"
-        else
-                local ssid=$(echo $output | grep ' SSID' | awk -F': ' '{print $2}')
-                local speed=$(echo $output | grep 'lastTxRate' | awk -F': ' '{print $2}')
-                local color='%F{black}'
+# Theme. 
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
-                [[ $speed -gt 100 ]] && color='%F{black}'
-                [[ $speed -lt 50 ]] && color='%F{red}'
+# Prompt elements
+P9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
+P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs go_version time)
 
-                echo -n "%{$color%}$speed Mbps \uf1eb%{%f%}" # removed char not in my PowerLine font
-        fi
-}
+# Set name of the theme to load.
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
-POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
+# Status
+P9K_STATUS_OK_ICON=$'\e342'
+P9K_STATUS_ERROR_ICON=$'\e366'
+P9K_STATUS_ERROR_CR_ICON=$'\uf165'
 
-# Battery details. 
-POWERLEVEL9K_BATTERY_CHARGING='yellow'
-POWERLEVEL9K_BATTERY_CHARGED='green'
-POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
-POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
-POWERLEVEL9K_BATTERY_LOW_COLOR='red'
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_BATTERY_ICON='\fc4b'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# Prompt settings
+P9K_PROMPT_ON_NEWLINE=true
+P9K_RPROMPT_ON_NEWLINE=true
+P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON=$'%K{white}%k'
+P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON=$'%K{green}%F{black} \uf155 %f%F{green}%k\ue0b0%f '
 
-#VCS icons
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+# Separators
+P9K_LEFT_SEGMENT_SEPARATOR_ICON=$'\ue0b0'
+P9K_LEFT_SUBSEGMENT_SEPARATOR_ICON=$'\ue0b1'
+P9K_RIGHT_SEGMENT_SEPARATOR_ICON=$'\ue0b2'
+P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON=$'\ue0b7'
 
-# Sword icon
-POWERLEVEL9K_SWORD_ICON='/F9E4'
-# User with sword.
-user_with_sword() {
-	echo -n "\f9e4 $(whoami)"
-}
-
-POWERLEVEL9K_USER="user_with_sword"
-
-# Left and right prompts. 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history battery time)
-
-# Shorten directory length. 
-# POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-
+#Time. 
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d/%m/%y}"
 POWERLEVEL9K_TIME_BACKGROUND='white'
+
+#Background and other colors. 
 POWERLEVEL9K_RAM_BACKGROUND='cyan'
 POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="white"
 POWERLEVEL9K_LOAD_WARNING_BACKGROUND="white"
@@ -74,94 +68,76 @@ POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
 POWERLEVEL9K_LOAD_WARNING_VISUAL_IDENTIFIER_COLOR="yellow"
 POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_COLOR="green"
 
+# Dir colours
+P9K_DIR_HOME_BACKGROUND='black'
+P9K_DIR_HOME_FOREGROUND='white'
+P9K_DIR_HOME_SUBFOLDER_BACKGROUND='black'
+P9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
+P9K_DIR_DEFAULT_BACKGROUND='yellow'
+P9K_DIR_DEFAULT_FOREGROUND='black'
+P9K_DIR_SHORTEN_LENGTH=2
+P9K_DIR_SHORTEN_STRATEGY="truncate_from_right"
+
+# OS segment
+P9K_OS_ICON_BACKGROUND='black'
+P9K_LINUX_ICON='%F{cyan} \uf303 %F{white} arch %F{cyan}linux%f'
+
+# VCS icons
+P9K_VCS_GIT_ICON=$'\uf1d2 '
+P9K_VCS_GIT_GITHUB_ICON=$'\e708 '
+P9K_VCS_GIT_GITLAB_ICON=$'\uf296 '
+P9K_VCS_BRANCH_ICON=$''
+P9K_VCS_STAGED_ICON=$'\uf055'
+P9K_VCS_UNSTAGED_ICON=$'\uf421'
+P9K_VCS_UNTRACKED_ICON=$'\uf00d'
+P9K_VCS_INCOMING_CHANGES_ICON=$'\uf0ab '
+P9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
+
+# VCS colours
+P9K_VCS_MODIFIED_BACKGROUND='blue'
+P9K_VCS_MODIFIED_FOREGROUND='black'
+P9K_VCS_UNTRACKED_BACKGROUND='green'
+P9K_VCS_UNTRACKED_FOREGROUND='black'
+P9K_VCS_CLEAN_BACKGROUND='green'
+P9K_VCS_CLEAN_FOREGROUND='black'
+
+# VCS CONFIG
+P9K_VCS_SHOW_CHANGESET=false
+
+# Status
+P9K_STATUS_OK_ICON=$'\e342'
+P9K_STATUS_ERROR_ICON=$'\e366'
+P9K_STATUS_ERROR_CR_ICON=$'\uf165'
+
+# Battery
+P9K_BATTERY_LOW_FOREGROUND='red'
+P9K_BATTERY_CHARGING_FOREGROUND='blue'
+P9K_BATTERY_CHARGED_FOREGROUND='green'
+P9K_BATTERY_DISCONNECTED_FOREGROUND='blue'
+P9K_BATTERY_VERBOSE=true
+
+# Sword icon
+POWERLEVEL9K_SWORD_ICON='/F9E4'
+# User with sword.
+user_with_sword() {
+	echo -n "\f9e4 $(whoami)"
+}
+
+POWERLEVEL9K_USER="user_with_sword"
+
+
+# Command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Command execution time stamp shown in the history command output.
+HIST_STAMPS="mm/dd/yyyy"
+
+# Shorten directory length. 
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+
 # Folder and home icons. 
 POWERLEVEL9K_HOME_ICON='\f015'
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON='\e5ff'
 POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_CROSS=true
-
-# Theme. 
-ZSH_THEME="powerlevel9k/powerlevel9k"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='nano'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
