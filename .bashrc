@@ -1,0 +1,1 @@
+/Users/nataliasanchez/dotfiles/dotfiles/.bashrc

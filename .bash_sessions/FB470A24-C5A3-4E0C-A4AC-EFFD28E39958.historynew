@@ -1,0 +1,20 @@
+ls 
+cd Deskto
+ls 
+cd D
+cd Desktop/
+ls 
+cppcheck helloworld.cpp 
+scan-build make 
+cppcheck helloworld.cpp 
+scan-build make 
+scan-build helloworld.cpp -c check.cpp
+make 
+g++ helloworld.cpp -c check.cpp 
+g++ helloworld.cpp -c check.exe
+g++ helloworld.cpp -c helloworld.exe
+g++ helloworld.cpp -o hello
+scan-build g++ helloworld.cpp -o hellop
+cppcheck helloworld.cpp 
+ls
+ls 

@@ -1,0 +1,17 @@
+ls 
+cd important_files/
+ls 
+touch bashrc-script.sh 
+open bashrc-script.sh -a Atom 
+chmod +x bashrc-script.sh 
+./bashrc-script.sh 
+which cd
+chmod +x bashrc-script.sh 
+./bashrc-script.sh 
+chmod +x bashrc-script.sh 
+./bashrc-script.sh 
+chmod +x bashrc-script.sh 
+./bashrc-script.sh 
+chmod +x bashrc-script.sh 
+./bashrc-script.sh 
+ls 
