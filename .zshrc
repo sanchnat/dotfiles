@@ -1,3 +1,4 @@
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/nataliasanchez/.oh-my-zsh"
 
@@ -9,24 +10,12 @@ POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
 POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="white"
 POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="black"
 
-zsh_wifi_signal(){
-        local output=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I)
-        local airport=$(echo $output | grep 'AirPort' | awk -F': ' '{print $2}')
+#Aliases:
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
 
-        if [ "$airport" = "Off" ]; then
-                local color='%F{black}'
-                echo -n "%{$color%}Wifi Off"
-        else
-                local ssid=$(echo $output | grep ' SSID' | awk -F': ' '{print $2}')
-                local speed=$(echo $output | grep 'lastTxRate' | awk -F': ' '{print $2}')
-                local color='%F{black}'
-
-                [[ $speed -gt 100 ]] && color='%F{black}'
-                [[ $speed -lt 50 ]] && color='%F{red}'
-
-                echo -n "%{$color%}$speed Mbps \uf1eb%{%f%}" # removed char not in my PowerLine font
-        fi
-}
+#Plugins.
+plugins=(git)
 
 POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
@@ -48,9 +37,36 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time dir_writable ip custom_wifi_sign
 
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
+# Prompt elements
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs go_version time)
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Status
+POWERLEVEL9K_STATUS_OK_ICON=$'\e342'
+POWERLEVEL9K_STATUS_ERROR_ICON=$'\e366'
+POWERLEVEL9K_STATUS_ERROR_CR_ICON=$'\uf165'
+
+# Prompt settings
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON=$'%K{white}%k'
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX_ICON=$'%K{green}%F{black} \uf155 %f%F{green}%k\ue0b0%f '
+
+# Separators
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR_ICON=$'\ue0b0'
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR_ICON=$'\ue0b1'
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR_ICON=$'\ue0b2'
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON=$'\ue0b7'
+
+#Time. 
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d/%m/%y}"
 POWERLEVEL9K_TIME_BACKGROUND='white'
 POWERLEVEL9K_RAM_BACKGROUND='yellow'
+
+#Background and other colors. 
+POWERLEVEL9K_RAM_BACKGROUND='cyan'
 POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="white"
 POWERLEVEL9K_LOAD_WARNING_BACKGROUND="white"
 POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="white"
@@ -68,3 +84,77 @@ POWERLEVEL9K_STATUS_CROSS=true
 
 # source oh-my-zsh config
 source $ZSH/oh-my-zsh.sh
+
+# Dir colours
+POWERLEVEL9K_DIR_HOME_BACKGROUND='black'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='black'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='yellow'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
+POWERLEVEL9K_DIR_SHORTEN_LENGTH=2
+POWERLEVEL9K_DIR_SHORTEN_STRATEGY="truncate_from_right"
+
+# OS segment
+POWERLEVEL9K_OS_ICON_BACKGROUND='black'
+POWERLEVEL9K_LINUX_ICON='%F{cyan} \uf303 %F{white} arch %F{cyan}linux%f'
+
+# VCS icons
+POWERLEVEL9K_VCS_GIT_ICON=$'\uf1d2 '
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\e708 '
+POWERLEVEL9K_VCS_GIT_GITLAB_ICON=$'\uf296 '
+POWERLEVEL9K_VCS_BRANCH_ICON=$''
+POWERLEVEL9K_VCS_STAGED_ICON=$'\uf055'
+POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uf421'
+POWERLEVEL9K_VCS_UNTRACKED_ICON=$'\uf00d'
+POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=$'\uf0ab '
+POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
+
+# VCS colours
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='blue'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='green'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green'
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
+
+# VCS CONFIG
+POWERLEVEL9K_VCS_SHOW_CHANGESET=false
+
+# Status
+POWERLEVEL9K_STATUS_OK_ICON=$'\e342'
+POWERLEVEL9K_STATUS_ERROR_ICON=$'\e366'
+POWERLEVEL9K_STATUS_ERROR_CR_ICON=$'\uf165'
+
+# Battery
+POWERLEVEL9K_BATTERY_LOW_FOREGROUND='red'
+POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='blue'
+POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='green'
+POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='blue'
+POWERLEVEL9K_BATTERY_VERBOSE=true
+
+# Sword icon
+POWERLEVEL9K_SWORD_ICON='/F9E4'
+# User with sword.
+user_with_sword() {
+	echo -n "\f9e4 $(whoami)"
+}
+
+POWERLEVEL9K_USER="user_with_sword"
+
+
+# Command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Command execution time stamp shown in the history command output.
+HIST_STAMPS="mm/dd/yyyy"
+
+# Shorten directory length. 
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+
+# Folder and home icons. 
+POWERLEVEL9K_HOME_ICON='\f015'
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON='\e5ff'
+POWERLEVEL9K_STATUS_VERBOSE=true
+POWERLEVEL9K_STATUS_CROSS=true
