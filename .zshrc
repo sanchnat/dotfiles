@@ -6,11 +6,6 @@ export ZSH="/Users/nataliasanchez/.oh-my-zsh"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
 
-# Wifi settings. 
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="white"
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="black"
-
 #Aliases:
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -19,7 +14,7 @@ alias ohmyzsh="mate ~/.oh-my-zsh"
 plugins=(git)
 
 POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='magenta'
 
 #Battery icon/color/settings. 
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
@@ -39,8 +34,8 @@ POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
 
 #Prompt elements. 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon user context battery dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time dir_writable ip custom_wifi_signal ram load background_jobs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context battery dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time dir_writable ip ram load background_jobs)
 
 # Shorten directory length. 
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
@@ -67,10 +62,9 @@ POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON=$'\ue0b7'
 #Time. 
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d/%m/%y}"
 POWERLEVEL9K_TIME_BACKGROUND='white'
-POWERLEVEL9K_RAM_BACKGROUND='yellow'
 
 #Background and other colors. 
-POWERLEVEL9K_RAM_BACKGROUND='cyan'
+POWERLEVEL9K_RAM_BACKGROUND='magenta'
 POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="white"
 POWERLEVEL9K_LOAD_WARNING_BACKGROUND="white"
 POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="white"
@@ -115,11 +109,11 @@ POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=$'\uf0ab '
 POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
 
 # VCS colous
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='blue'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='red'
 POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='green'
 POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green'
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='blue'
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
 
 # VCS CONFIG
@@ -134,10 +128,11 @@ POWERLEVEL9K_STATUS_ERROR_CR_ICON=$'\uf165'
 POWERLEVEL9K_SWORD_ICON='/F9E4'
 # User with sword.
 user_with_sword() {
-	echo -n "\f9e4 $(whoami)"
+	echo -n "/f9e4 $(whoami)"
 }
-
 POWERLEVEL9K_USER="user_with_sword"
+POWERLEVEL9K_USER_BACKGROUND='black'
+POWERELEVEL9K_USER_FOREGROUND='cyan'
 
 
 # Command auto-correction.
